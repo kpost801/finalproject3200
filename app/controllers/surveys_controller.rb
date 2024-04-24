@@ -8,6 +8,7 @@ class SurveysController < ApplicationController
 
   # GET /surveys/1
   def show
+    @survey = Survey.find(params[:id])
   end
 
   # GET /surveys/new
@@ -17,12 +18,13 @@ class SurveysController < ApplicationController
 
   # GET /surveys/1/edit
   def edit
+    @survey = Survey.find(params[:id])
   end
 
   # POST /surveys
   def create
     @survey = Survey.new(survey_params)
-
+    @survey.question = @survey
     if @survey.save
       redirect_to @survey, notice: "Survey was successfully created."
     else
@@ -32,6 +34,7 @@ class SurveysController < ApplicationController
 
   # PATCH/PUT /surveys/1
   def update
+    @survey = Survey.find(params[:id])
     if @survey.update(survey_params)
       redirect_to @survey, notice: "Survey was successfully updated.", status: :see_other
     else
@@ -53,6 +56,6 @@ class SurveysController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def survey_params
-      params.require(:survey).permit(:title, :description)
+      params.require(:survey).permit(:title, :description, :answer)
     end
 end

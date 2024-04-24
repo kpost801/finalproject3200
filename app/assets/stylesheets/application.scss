@@ -14,4 +14,27 @@
  *= require_self
  */
 
- @import "bootstrap";
+@import "bootstrap";
+
+h1 {
+  text-align: center;
+  padding-bottom: 3rem;
+}
+
+.form {
+  padding-bottom: 3rem;
+  padding-top: 3rem;
+}
+
+.container {
+  text-align: center;
+  background-color: rgb(210, 206, 206);
+}
+
+.danger {
+  padding-top: 1rem;
+}
+
+.row {
+  margin-left: 20rem;
+}

@@ -12,21 +12,16 @@
   <% end %>
 
   <div>
-    <%= form.label :content, style: "display: block" %>
+    <%= form.label "Questions", placeholder: "Enter question here", style: "display: block" %>
     <%= form.text_field :content %>
   </div>
 
-  <div>
-    <%= form.label :survey_id, style: "display: block" %>
-    <%= form.text_field :survey_id %>
+  <div class = "form">
+    <%= form.label "Survey Type",style: "display: block" %>
+    <%= form.select :survey_id, [["Multiple Choice", 1], ["Essay",2], ["True/False",3], ["Multiple Answer",4]] %>
   </div>
 
   <div>
-    <%= form.label :answer, style: "display: block" %>
-    <%= form.check_box :answer %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+    <%= form.submit class: "btn btn-primary" %>
   </div>
 <% end %>

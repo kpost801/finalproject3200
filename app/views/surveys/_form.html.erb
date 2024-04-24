@@ -1,3 +1,4 @@
+
 <%= form_with(model: survey) do |form| %>
   <% if survey.errors.any? %>
     <div style="color: red">
@@ -11,17 +12,31 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
-  </div>
 
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
-  </div>
+    <div>
+      <%= form.label :title, class: "form-label" %>
+      <%= form.text_field :title, class: "form-control" %>
+    </div>
 
-  <div>
-    <%= form.submit %>
-  </div>
+    <div>
+      <%= form.label :description, class: "form-label" %>
+      <%= form.rich_text_area :description, class: "form-control" %>
+    </div>
+
+    <!-- For adding new question field dynamically -->
+    <div class="clearfix">
+          <% unless survey.new_record? %>
+            <h2>Questions</h2>
+          <% form.fields_for :question do |f| %>
+            <%= render 'question_fields', f: f %>
+          <% end %>
+
+          <button type="button" class="btn btn-success add_question_btn float-end">Add Question</button>
+          <% end %>
+    </div>
+
+    <div>
+      <%= form.submit class: "btn btn-primary " %>
+    </div>
+    
 <% end %>

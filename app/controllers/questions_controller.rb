@@ -1,4 +1,5 @@
 class QuestionsController < ApplicationController
+  before_action :set_survey
   before_action :set_question, only: %i[ show edit update destroy ]
 
   # GET /questions
@@ -22,7 +23,7 @@ class QuestionsController < ApplicationController
   # POST /questions
   def create
     @question = Question.new(question_params)
-
+     @question.survey = @survey
     if @question.save
       redirect_to @question, notice: "Question was successfully created."
     else
@@ -51,6 +52,9 @@ class QuestionsController < ApplicationController
       @question = Question.find(params[:id])
     end
 
+    def set_survey
+      @survey = Survey.find_by(params[:survey_id])
+    end
     # Only allow a list of trusted parameters through.
     def question_params
       params.require(:question).permit(:content, :survey_id, :answer)

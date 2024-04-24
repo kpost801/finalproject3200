@@ -1,14 +1,29 @@
+<div class="container">
 <p style="color: green"><%= notice %></p>
 
 <h1>Surveys</h1>
 
-<div id="surveys">
+<div>
+<table class="table">
   <% @surveys.each do |survey| %>
     <%= render survey %>
+    <tr>
+      <td>
+      <%= link_to "Edit", edit_survey_path(survey), class: "btn btn-warning" %>
+      <%= link_to "Delete", survey, class: "btn btn-danger" %>
+      <%= link_to "Take Survey", new_survey_path(survey), class: "btn btn-secondary" %>
+      </td>
+    </tr>
     <p>
-      <%= link_to "Show this survey", survey %>
+      <%= link_to "Show this survey", [@question, survey], class: "btn btn-success " %>
     </p>
   <% end %>
+  </table>
 </div>
 
-<%= link_to "New survey", new_survey_path %>
+
+<%= link_to "New survey", new_survey_path,class: "btn btn-primary " %>
+<%= link_to "Home", root_path, class: "btn btn-light " %>
+<%= link_to "Questions", new_question_path,class: "btn btn-dark" %>
+</div>
+
